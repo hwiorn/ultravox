@@ -185,6 +185,20 @@ CV_UK_CONFIG = types.DatasetConfig(
     ],
 )
 
+# Korean
+CV_KO_CONFIG = types.DatasetConfig(
+    name="commonvoice-ko",
+    base="commonvoice",
+    subset="ko",
+    splits=[
+        types.DatasetSplitConfig(name="train", num_samples=376),
+        types.DatasetSplitConfig(
+            name="validation", num_samples=339, split=types.DatasetSplit.TRAIN
+        ),
+        types.DatasetSplitConfig(name="test", num_samples=339),
+    ],
+)
+
 CV_EN_TRANS_CONFIG = types.DatasetConfig(
     name="commonvoice-en-transcription",
     base="commonvoice-en",
@@ -261,6 +275,14 @@ CV_UK_TRANS_CONFIG = types.DatasetConfig(
     name="commonvoice-uk-transcription",
     base="commonvoice-uk",
     user_template=types.TRANSCRIPTION_USER_TEMPLATE,
+    eval_config=types.EvalConfig(metric="wer"),
+)
+
+CV_KO_TRANS_CONFIG = types.DatasetConfig(
+    name="commonvoice-ko-transcription",
+    base="commonvoice-ko",
+    user_template=types.TRANSCRIPTION_USER_TEMPLATE,
+    # FIXME: cer?
     eval_config=types.EvalConfig(metric="wer"),
 )
 
@@ -347,6 +369,13 @@ CV_UK_CONT_CONFIG = types.DatasetConfig(
     assistant_template=types.CONTINUATION_ASSISTANT_TEMPLATE,
 )
 
+CV_KO_CONT_CONFIG = types.DatasetConfig(
+    name="commonvoice-ko-continuation",
+    base="commonvoice-ko",
+    user_template=types.CONTINUATION_USER_TEMPLATE,
+    assistant_template=types.CONTINUATION_ASSISTANT_TEMPLATE,
+)
+
 configs = [
     CV_BASE_CONFIG,
     CV_EN_CONFIG,
@@ -362,6 +391,7 @@ configs = [
     CV_TR_CONFIG,
     CV_SV_CONFIG,
     CV_UK_CONFIG,
+    CV_KO_CONFIG,
     CV_EN_TRANS_CONFIG,
     CV_AR_TRANS_CONFIG,
     CV_DE_TRANS_CONFIG,
@@ -375,6 +405,7 @@ configs = [
     CV_TR_TRANS_CONFIG,
     CV_SV_TRANS_CONFIG,
     CV_UK_TRANS_CONFIG,
+    CV_KO_TRANS_CONFIG,
     CV_EN_CONT_CONFIG,
     CV_AR_CONT_CONFIG,
     CV_DE_CONT_CONFIG,
@@ -388,4 +419,5 @@ configs = [
     CV_TR_CONT_CONFIG,
     CV_SV_CONT_CONFIG,
     CV_UK_CONT_CONFIG,
+    CV_KO_CONT_CONFIG,
 ]

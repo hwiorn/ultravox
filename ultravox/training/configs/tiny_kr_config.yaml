@@ -1,0 +1,35 @@
+# SLM with ultravox & llama3.1, trained wtih knowledge distillation.
+# Make sure to accept the license agreement on huggingface hub
+text_model: "meta-llama/Llama-3.2-1B-Instruct"
+audio_model: "openai/whisper-small"
+
+train_sets:
+  #- name: librispeech-clean-continuation
+  #- name: commonvoice-ko-transcription
+  #- name: commonvoice-ko-continuation
+  - name: zeroth-korean-transcription
+
+val_sets:
+  #- name: covost2-en-de
+  - name: commonvoice-ko-transcription
+
+eval_sets:
+  #- name: covost2-en-de
+  - name: commonvoice-ko-transcription
+
+train_dataset_args:
+  max_samples: 2000
+
+val_dataset_args:
+  max_samples: 10
+
+eval_dataset_args:
+  max_samples: 10
+
+
+lr: 2e-3
+lr_warmup_steps: 0
+max_steps: -1
+num_epochs: 1
+
+
